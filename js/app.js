@@ -89,7 +89,9 @@ function addCardToShowList(card) {
 	card.className += " open show";
 	listOfCardsShow.push(card.firstElementChild.className);
 	addCardToMatchList(listOfCardsShow);
-	checkCardMatch(listOfCardsShow, listOfCardsMatch);
+	setTimeout(function() {
+		checkCardMatch(listOfCardsShow, listOfCardsMatch);
+	}, 2000);
 }
 
 // Clear list function
