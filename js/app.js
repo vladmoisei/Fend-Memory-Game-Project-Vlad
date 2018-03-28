@@ -2,6 +2,11 @@
  * Create a list that holds all of your cards
  */
 
+const listOfCards = ["fa fa-diamond", "fa fa-paper-plane-o",
+ "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-anchor",
+ "fa fa-leaf", "fa fa-bicycle", "fa fa-diamond",
+ "fa fa-bomb", "fa fa-leaf", "fa fa-bomb", "fa fa-bolt",
+ "fa fa-bicycle", "fa fa-paper-plane-o", "fa fa-cube"];
 
 /*
  * Display the cards on the page
@@ -36,3 +41,32 @@ function shuffle(array) {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
+
+//Declaring variables
+let listOfCardsShuffled = [];
+let listOfCardsShow = [];
+let listOfCardsMatch = [];
+const cards = document.querySelectorAll('.deck li');
+
+/*
+ * Set Grid with shuffled cards
+ * - populate array of shuffled cards
+ * - create a function for adding cards to grid's deck
+ */
+
+function createListOfShuffledCards() {
+	listOfCardsShuffled = shuffle(listOfCards);
+	return listOfCardsShuffled;
+}
+
+function addShuffledCardsToGrid() {
+	createListOfShuffledCards();
+	let i = 0;
+	for (let card of cards) {
+		card.className = "card";
+		card.firstElementChild.className = listOfCardsShuffled[i];
+		i++;
+	}
+}
+addShuffledCardsToGrid();
