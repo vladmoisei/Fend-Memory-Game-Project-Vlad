@@ -69,4 +69,66 @@ function addShuffledCardsToGrid() {
 		i++;
 	}
 }
-addShuffledCardsToGrid();
+
+addShuffledCardsToGrid(); //Add random cards to grid
+
+/*
+ * Add event listener for each card
+ * - add function for Show Card List
+ * - add function for Match card List
+ */
+
+cards.forEach(elem => elem.addEventListener("click", handlerEventClickOnCard));
+function handlerEventClickOnCard () {
+	//console.log(this.className);
+	addCardToShowList(this);
+};
+
+// Function for adding Card to Show list
+function addCardToShowList(card) {
+	card.className += " open show";
+	listOfCardsShow.push(card.firstElementChild.className);
+	addCardToMatchList(listOfCardsShow);
+	checkCardMatch(listOfCardsShow, listOfCardsMatch);
+}
+
+// Clear list function
+function clearList(list) {
+	for (let i = 0; i < 2; i++) {
+            list.shift();
+        }
+    return list;
+}
+
+// Function for adding card to Match List
+function addCardToMatchList(list) {
+	if (list.length === 2) {
+		if (list[0] === list[1]) {
+			let mySearchString = "." + list[0].toString().split(" ")[1];
+			//console.log(mySearchString);
+			let elemArrayCardsMatch = document.querySelectorAll(mySearchString);
+			let arrayCardsMatch = [ ...elemArrayCardsMatch];
+			//console.log(arrayCardsMatch);
+			//console.log(elemArrayCardsMatch[0].parentElement.className);
+			elemArrayCardsMatch[0].parentElement.className = "card match";
+			elemArrayCardsMatch[1].parentElement.className = "card match";
+			listOfCardsMatch.push(list[0]);
+			listOfCardsMatch.push(list[1]);
+		    clearList(list);
+	    }
+	    else {
+	    	clearList(list);
+	    };
+	};
+}
+
+// Function that shows only match cards
+function checkCardMatch(listOfCardsShow, listOfCardsMatch) {
+    if (listOfCardsShow.length === 0) {
+	    for (let card of cards) {
+		    if (!card.classList.contains("match")) {
+			    card.className = "card"
+		    }
+	    }
+    }
+}
