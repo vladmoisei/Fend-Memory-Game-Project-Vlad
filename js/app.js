@@ -47,6 +47,7 @@ function shuffle(array) {
 let listOfCardsShuffled = [];
 let listOfCardsShow = [];
 let listOfCardsMatch = [];
+//let listOfClickedCards = [];
 const cards = document.querySelectorAll('.deck li');
 
 /*
@@ -76,6 +77,7 @@ addShuffledCardsToGrid(); //Add random cards to grid
  * Add event listener for each card
  * - add function for Show Card List
  * - add function for Match card List
+ * - add animation to match and unmatch cards
  */
 
 cards.forEach(elem => elem.addEventListener("click", handlerEventClickOnCard));
@@ -83,6 +85,7 @@ cards.forEach(elem => elem.addEventListener("click", handlerEventClickOnCard));
 function handlerEventClickOnCard () {
 	//console.log(this.className);
 	addCardToShowList(this);
+	//listOfClickedCards.push(this);
 	//console.log(this.className);
 	//if (this.className === "card") this.addEventListener("click", handlerEventClickOnCard);
 };
@@ -139,6 +142,16 @@ function addCardToMatchList(list) {
 				//console.log(elemArrayCardsMatch[1].parentElement.className);
 			//}, 500);
 			//pana aici
+			let listOfClickedCards = document.querySelectorAll(".open");
+			setTimeout(function (argument) {
+				//listOfClickedCards[0].className += " cardBackground";
+				listOfClickedCards[0].className += " cardBackground animated shake";
+				listOfClickedCards[1].className += " cardBackground animated shake";
+				console.log(listOfClickedCards[0].className);
+				console.log(listOfClickedCards[1].className);
+			}, 500);
+			//listOfClickedCards[0].classList.add("animated.pulse");
+			//listOfClickedCards[1].classList.add("animated.pulse");
 	    	clearList(list); //clear showCardList
 	    };
 	};
