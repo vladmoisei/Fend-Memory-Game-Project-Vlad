@@ -113,3 +113,7 @@ h1 {
     float: right;
     cursor: pointer;
 }
+
+.star-lost {
+    color: #cec9c6;
+}

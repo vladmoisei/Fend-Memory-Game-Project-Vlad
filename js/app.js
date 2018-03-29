@@ -51,6 +51,7 @@ let listOfCardsMatch = [];
 const cards = document.querySelectorAll('.deck li');
 const moves = document.querySelector('.moves');
 let counterMoves = Number(moves.innerText);
+let starsArray = document.querySelectorAll('.fa-star');
 //console.log(counterMoves++);
 /*
  * Set Grid with shuffled cards
@@ -86,11 +87,7 @@ addShuffledCardsToGrid(); //Add random cards to grid
 cards.forEach(elem => elem.addEventListener("click", handlerEventClickOnCard));
 
 function handlerEventClickOnCard () {
-	//console.log(this.className);
 	addCardToShowList(this);
-	//listOfClickedCards.push(this);
-	//console.log(this.className);
-	//if (this.className === "card") this.addEventListener("click", handlerEventClickOnCard);
 };
 
 // Function for adding Card to Show list
@@ -119,17 +116,12 @@ function clearList(list) {
 function addCardToMatchList(list) {
 	if (list.length === 2) { //if are open 2 cards
 		counterMoves++; //increment counter moves
-		moves.innerText = counterMoves;
+		moves.innerText = counterMoves; //show counter moves on screen
+		checkMovesNumber();
 		let mySearchString = "." + list[0].toString().split(" ")[1];
 		let elemArrayCardsMatch = document.querySelectorAll(mySearchString);
 		let arrayCardsMatch = [ ...elemArrayCardsMatch];
-		//let card1 = document.querySelector list[0];
-		//let card2 = list[1];
-		//console.log(card1);
 		if (list[0] === list[1]) { //if card 1 is the same with card 2
-			//console.log(mySearchString);
-			//console.log(arrayCardsMatch);
-			//console.log(elemArrayCardsMatch[0].parentElement.className);
 			setTimeout(function (argument) { //set delay 1 sec to set match card
 				elemArrayCardsMatch[0].parentElement.className = "card match animated pulse"; //set match card 1
 				elemArrayCardsMatch[1].parentElement.className = "card match animated pulse"; //set match card 2
@@ -139,24 +131,11 @@ function addCardToMatchList(list) {
 		    clearList(list); //clear showCardList
 	    }
 	    else {
-	    	//adaugare pentru animare mismatch
-	    	//setTimeout(function (argument) { //set delay 1 sec to set match card
-			//	elemArrayCardsMatch[0].parentElement.className = "card animated pulse"; //set match card 1
-			//	elemArrayCardsMatch[1].parentElement.className = "card animated pulse"; //set match card 2
-				//console.log(elemArrayCardsMatch[0].parentElement.className);
-				//console.log(elemArrayCardsMatch[1].parentElement.className);
-			//}, 500);
-			//pana aici
 			let listOfClickedCards = document.querySelectorAll(".open");
 			setTimeout(function (argument) {
-				//listOfClickedCards[0].className += " cardBackground";
 				listOfClickedCards[0].className += " cardBackground animated shake";
 				listOfClickedCards[1].className += " cardBackground animated shake";
-				//console.log(listOfClickedCards[0].className);
-				//console.log(listOfClickedCards[1].className);
 			}, 500);
-			//listOfClickedCards[0].classList.add("animated.pulse");
-			//listOfClickedCards[1].classList.add("animated.pulse");
 	    	clearList(list); //clear showCardList
 	    };
 	};
@@ -169,7 +148,6 @@ function checkCardMatch(listOfCardsShow, listOfCardsMatch) {
 			for (let card of cards) {
 		    	if (!card.classList.contains("match")) {
 			    	card.className = "card"; //close cards that don't match
-			    	//console.log(card.className);
 			    	if (card.className === "card") {
 			    		card.addEventListener("click", handlerEventClickOnCard); //add event listeners to cards that don't match
 			    	};
@@ -177,4 +155,14 @@ function checkCardMatch(listOfCardsShow, listOfCardsMatch) {
 	    	};
 	    }, 1000);
     };
+}
+
+// Function for removing stars after certain number of muves
+function checkMovesNumber() {
+	if (counterMoves > 14) {
+		starsArray[2].className += " star-lost";
+		if (counterMoves > 25) {
+			starsArray[1].className += " star-lost";
+		};
+	};
 }
