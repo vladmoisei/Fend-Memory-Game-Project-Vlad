@@ -83,7 +83,7 @@ cards.forEach(elem => elem.addEventListener("click", handlerEventClickOnCard));
 function handlerEventClickOnCard () {
 	//console.log(this.className);
 	addCardToShowList(this);
-	console.log(this.className);
+	//console.log(this.className);
 	//if (this.className === "card") this.addEventListener("click", handlerEventClickOnCard);
 };
 
@@ -112,22 +112,33 @@ function clearList(list) {
 // Function for adding card to Match List and clear showList
 function addCardToMatchList(list) {
 	if (list.length === 2) { //if are open 2 cards
+		let mySearchString = "." + list[0].toString().split(" ")[1];
+		let elemArrayCardsMatch = document.querySelectorAll(mySearchString);
+		let arrayCardsMatch = [ ...elemArrayCardsMatch];
+		//let card1 = document.querySelector list[0];
+		//let card2 = list[1];
+		//console.log(card1);
 		if (list[0] === list[1]) { //if card 1 is the same with card 2
-			let mySearchString = "." + list[0].toString().split(" ")[1];
 			//console.log(mySearchString);
-			let elemArrayCardsMatch = document.querySelectorAll(mySearchString);
-			let arrayCardsMatch = [ ...elemArrayCardsMatch];
 			//console.log(arrayCardsMatch);
 			//console.log(elemArrayCardsMatch[0].parentElement.className);
 			setTimeout(function (argument) { //set delay 1 sec to set match card
-				elemArrayCardsMatch[0].parentElement.className = "card match"; //set match card 1
-				elemArrayCardsMatch[1].parentElement.className = "card match"; //set match card 2
+				elemArrayCardsMatch[0].parentElement.className = "card match animated pulse"; //set match card 1
+				elemArrayCardsMatch[1].parentElement.className = "card match animated pulse"; //set match card 2
 			}, 1000);
 			listOfCardsMatch.push(list[0]); //add card 1 to match list
 			listOfCardsMatch.push(list[1]); //add card 2 to match list
 		    clearList(list); //clear showCardList
 	    }
 	    else {
+	    	//adaugare pentru animare mismatch
+	    	//setTimeout(function (argument) { //set delay 1 sec to set match card
+			//	elemArrayCardsMatch[0].parentElement.className = "card animated pulse"; //set match card 1
+			//	elemArrayCardsMatch[1].parentElement.className = "card animated pulse"; //set match card 2
+				//console.log(elemArrayCardsMatch[0].parentElement.className);
+				//console.log(elemArrayCardsMatch[1].parentElement.className);
+			//}, 500);
+			//pana aici
 	    	clearList(list); //clear showCardList
 	    };
 	};
@@ -140,6 +151,7 @@ function checkCardMatch(listOfCardsShow, listOfCardsMatch) {
 			for (let card of cards) {
 		    	if (!card.classList.contains("match")) {
 			    	card.className = "card"; //close cards that don't match
+			    	//console.log(card.className);
 			    	if (card.className === "card") {
 			    		card.addEventListener("click", handlerEventClickOnCard); //add event listeners to cards that don't match
 			    	};
