@@ -49,7 +49,9 @@ let listOfCardsShow = [];
 let listOfCardsMatch = [];
 //let listOfClickedCards = [];
 const cards = document.querySelectorAll('.deck li');
-
+const moves = document.querySelector('.moves');
+let counterMoves = Number(moves.innerText);
+//console.log(counterMoves++);
 /*
  * Set Grid with shuffled cards
  * - populate array of shuffled cards
@@ -78,6 +80,7 @@ addShuffledCardsToGrid(); //Add random cards to grid
  * - add function for Show Card List
  * - add function for Match card List
  * - add animation to match and unmatch cards
+ * - add counter for moves
  */
 
 cards.forEach(elem => elem.addEventListener("click", handlerEventClickOnCard));
@@ -115,6 +118,8 @@ function clearList(list) {
 // Function for adding card to Match List and clear showList
 function addCardToMatchList(list) {
 	if (list.length === 2) { //if are open 2 cards
+		counterMoves++; //increment counter moves
+		moves.innerText = counterMoves;
 		let mySearchString = "." + list[0].toString().split(" ")[1];
 		let elemArrayCardsMatch = document.querySelectorAll(mySearchString);
 		let arrayCardsMatch = [ ...elemArrayCardsMatch];
@@ -147,8 +152,8 @@ function addCardToMatchList(list) {
 				//listOfClickedCards[0].className += " cardBackground";
 				listOfClickedCards[0].className += " cardBackground animated shake";
 				listOfClickedCards[1].className += " cardBackground animated shake";
-				console.log(listOfClickedCards[0].className);
-				console.log(listOfClickedCards[1].className);
+				//console.log(listOfClickedCards[0].className);
+				//console.log(listOfClickedCards[1].className);
 			}, 500);
 			//listOfClickedCards[0].classList.add("animated.pulse");
 			//listOfClickedCards[1].classList.add("animated.pulse");
