@@ -52,6 +52,8 @@ const cards = document.querySelectorAll('.deck li');
 const moves = document.querySelector('.moves');
 let counterMoves = Number(moves.innerText);
 let starsArray = document.querySelectorAll('.fa-star');
+let intervalID; //Variable used to stop the timer
+let counterClick = 0;
 //console.log(counterMoves++);
 /*
  * Set Grid with shuffled cards
@@ -87,6 +89,7 @@ addShuffledCardsToGrid(); //Add random cards to grid
 cards.forEach(elem => elem.addEventListener("click", handlerEventClickOnCard));
 
 function handlerEventClickOnCard () {
+	if (++counterClick == 1) startTimer(); //start timer at first click on card
 	addCardToShowList(this);
 };
 
@@ -167,23 +170,22 @@ function checkMovesNumber() {
 	};
 }
 
-//Funtion for timer
+//Funtion for start timer
 function startTimer() {
 	var sec = 0;
     function pad ( val ) { return val > 9 ? val : "0" + val; }
-    setInterval( function(){
-        document.getElementById("seconds").innerHTML=pad(++sec%60);
-        document.getElementById("minutes").innerHTML=pad(parseInt(sec/60,10));
+    intervalID = setInterval( function(){
+        document.getElementById("seconds").innerHTML = pad(++sec%60);
+        document.getElementById("minutes").innerHTML = pad(parseInt(sec/60,10));
     }, 1000);
 }
 
-startTimer();
-
 //Function stop timer
 function stopTimer() {
-	let timer = document.querySelector('.timer');
-	timer.children.remove;
-	console.log(timer.children);
+	counterClick = 0;
+	let minutesLabel = document.querySelector('#minutes');
+	let secondsLabel = document.querySelector('#seconds');
+	minutesLabel.innerHTML = "00";
+	secondsLabel.innerHTML = "00";
+	//clearInterval(intervalID);
 }
-
-stopTimer();
