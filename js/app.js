@@ -162,9 +162,9 @@ function checkCardMatch(listOfCardsShow, listOfCardsMatch) {
 
 // Function for removing stars after certain number of muves
 function checkMovesNumber() {
-	if (counterMoves > 14) {
+	if (counterMoves > 12) {
 		starsArray[2].className += " star-lost";
-		if (counterMoves > 25) {
+		if (counterMoves > 20) {
 			starsArray[1].className += " star-lost";
 		};
 	};
@@ -187,5 +187,53 @@ function stopTimer() {
 	let secondsLabel = document.querySelector('#seconds');
 	minutesLabel.innerHTML = "00";
 	secondsLabel.innerHTML = "00";
-	//clearInterval(intervalID);
+	clearInterval(intervalID);
+}
+
+/*
+ * Add functionality to Reset Button
+ * - reset the game board
+ * - reset the timer
+ * - reset star rating
+ */
+
+document.querySelector(".restart").addEventListener("click", handlerEventClickOnReset);
+//Function for click event on Reset Button
+function handlerEventClickOnReset() {
+	addShuffledCardsToGrid(); //Add random cards to grid
+	cards.forEach(elem => elem.addEventListener("click", handlerEventClickOnCard));
+	counterMoves = 0; //reset counter moves
+	moves.innerText = counterMoves; //show counter moves on screen
+	starsArray[0].className = "fa fa-star";
+	starsArray[1].className = "fa fa-star";
+	starsArray[2].className = "fa fa-star";
+	clearList(listOfCardsShow);
+	stopTimer();
+}
+
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+document.querySelector('.restart').setAttribute("id", "myBtn");
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 }
