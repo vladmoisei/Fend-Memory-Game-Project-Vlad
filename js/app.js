@@ -30,19 +30,6 @@ function shuffle(array) {
     return array;
 }
 
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
-
-
 //Declaring variables
 let listOfCardsShuffled = [];
 let listOfCardsShow = [];
@@ -131,6 +118,7 @@ function addCardToMatchList(list) {
 			}, 1000);
 			listOfCardsMatch.push(list[0]); //add card 1 to match list
 			listOfCardsMatch.push(list[1]); //add card 2 to match list
+			checkGameOver(); //check if there are 16 cards match to popup congratulations window
 		    clearList(list); //clear showCardList
 	    }
 	    else {
@@ -204,27 +192,35 @@ function handlerEventClickOnReset() {
 	cards.forEach(elem => elem.addEventListener("click", handlerEventClickOnCard));
 	counterMoves = 0; //reset counter moves
 	moves.innerText = counterMoves; //show counter moves on screen
-	starsArray[0].className = "fa fa-star";
-	starsArray[1].className = "fa fa-star";
-	starsArray[2].className = "fa fa-star";
 	clearList(listOfCardsShow);
+	//Clear listOfCardsMatch
+	clearAllList(listOfCardsMatch);
 	stopTimer();
+	resetPopupStars(); //reset stars
 }
+
+/*
+ * Add functionality appear Congratulations screen
+ * - Add Congratulations window: I inspired from w3school: https://www.w3schools.com/howto/howto_css_modals.asp
+ * - Add functionality and scores show to congratulations window
+ */
 
 // Get the modal
 var modal = document.getElementById('myModal');
 
-// Get the button that opens the modal
-document.querySelector('.restart').setAttribute("id", "myBtn");
+/*// Get the button that opens the modal
+document.querySelector('.restart').setAttribute("id", "myBtn"); //adaugat de proba, afisare congrat window
 var btn = document.getElementById("myBtn");
+*/
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal 
+/*// When the user clicks the button, open the modal
 btn.onclick = function() {
     modal.style.display = "block";
 }
+*/
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
@@ -237,3 +233,80 @@ window.onclick = function(event) {
         modal.style.display = "none";
     }
 }
+
+document.querySelector(".resetGame").addEventListener("click", handlerEventClickOnReset);
+//Function for click event on Reset Button in Modal window
+function handlerEventClickOnReset() {
+	addShuffledCardsToGrid(); //Add random cards to grid
+	cards.forEach(elem => elem.addEventListener("click", handlerEventClickOnCard));
+	counterMoves = 0; //reset counter moves
+	moves.innerText = counterMoves; //show counter moves on screen
+	clearList(listOfCardsShow);
+	stopTimer();
+	modal.style.display = "none";
+	resetPopupStars(); //reset stars
+	//Clear listOfCardsMatch
+	clearAllList(listOfCardsMatch);
+}
+
+//Function ClearAllList
+function clearAllList(list) {
+	let condition = true;
+	while (condition) {
+	   	list.pop();
+	   	condition = (list.length > 0) ? true : false;
+	}
+}
+//Function check if game is over and show scores
+function checkGameOver() {
+	if (listOfCardsMatch.length == 16) {
+	    showPopupWindow(); //show popup window
+	    writeTimeCounter();
+	    writeMovesCounter();
+	    writeStarsCounter();
+	    stopTimer();
+	    //Clear listOfCardsMatch
+	    clearAllList(listOfCardsMatch);
+    }
+}
+
+//Function show Popup window
+function showPopupWindow() {
+    modal.style.display = "block";
+}
+
+//Function write timeCounter in popup window
+function writeTimeCounter() {
+	let timeCounter = document.getElementById('timeCounter');
+	let minutesLabel = document.querySelector('#minutes');
+	let secondsLabel = document.querySelector('#seconds');
+	timeCounter.innerText = minutesLabel.innerText + " : " + secondsLabel.innerText;
+}
+
+//Function write movesCounter in popup window
+function writeMovesCounter() {
+	let movesCounter = document.getElementById('movesCounter');
+	movesCounter.innerText = counterMoves;
+}
+
+//Function write stars score in popup window
+function writeStarsCounter() {
+	let star2 = document.getElementById('star2-show');
+	let star3 = document.getElementById('star3-show');
+	if (counterMoves > 12) {
+		star3.className += " star-lost";
+		if (counterMoves > 20) {
+			star2.className += " star-lost";
+		};
+	};
+}
+
+//Reset classes for stars in popup window and stars on main window
+function resetPopupStars() {
+	starsArray[0].className = "fa fa-star";
+	starsArray[1].className = "fa fa-star";
+	starsArray[2].className = "fa fa-star";
+	document.getElementById('star2-show').className = "";
+	document.getElementById('star3-show').className = "";
+}
+

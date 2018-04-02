@@ -85,46 +85,32 @@
             </li>
         </ul>
 
-        <!-- The Modal -->
+        <!-- The Modal Congratulation PopUp -->
         <div id="myModal" class="modal">
 
         	<!-- Modal content -->
         	<div class="modal-content">
         		<span class="close">&times;</span>
-        		<div class="header-modal">
-        			<div id="star-image">
-        				<img src="img/if_icon-34-award_315741.svg" alt="Star image">
-        			</div>
-        			<div class="congrat">
-        				<h1>Congratulations!!!</h1>
-        			</div>
+        		<h1 class="congrat-title">Congratulations!</h2>
+        		<p class="congrat-message">You won!</p>
+        		<div>
+        			<p class="congrat-time">Time:</p>
+        			<span id="timeCounter">00 : 00</span>
         		</div>
-        		<table>
-        			<tr>
-        				<td class="left">
-        					<p>You finished it in: </p>
-        				</td>
-        				<td>
-        					<p class="counder-moves"></p>
-        				</td>
-        			</tr>
-        			<tr>
-        				<td class="left">
-        					<p>Your time is: </p>
-        				</td>
-        				<td>
-        					<p class="score-time"></p>
-        				</td>
-        			</tr>
-        			<tr>
-        				<td class="left">
-        					<p>Your remained stars: </p>
-        				</td>
-        				<td>
-        					<p class="score-stars"></p>
-        				</td>
-        			</tr>
-        		</table>
+        		<div>
+        			<p class="congrat-moves">Moves:</p>
+        			<span id='movesCounter'>0</span>
+        		</div>
+        		<div>
+        			<p class="congrat-stars">Stars:</p>
+        			<ul class="starsCounter">
+        				<li><i class="fa fa-star"></i></li>
+        				<li id="star2-show"><i class="fa fa-star"></i></li>
+        				<li id="star3-show"><i class="fa fa-star"></i></li>
+        			</ul>
+        		</div>
+        		<hr>
+        		<button class="resetGame">Play again</button>
         	</div>
 
         </div>

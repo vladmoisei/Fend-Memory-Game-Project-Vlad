@@ -136,11 +136,11 @@ h1 {
 /* Modal Content */
 .modal-content {
     /*background-color: #fefefe;*/
-    text-align: center;
+    /*text-align: center;*/
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 50%;
+    width: 20%;
     border-radius: 10px;
     background: rgba(147,206,222,1);
     background: -moz-linear-gradient(-45deg, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(189,73,189,1) 100%);
@@ -165,4 +165,46 @@ h1 {
     color: #000;
     text-decoration: none;
     cursor: pointer;
+}
+
+.congrat-title, .congrat-message {
+    text-align: center;
+}
+.congrat-time, .congrat-moves, .congrat-stars {
+    width: 70px;
+    margin: .4em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.52);
+    display: inline-block;
+    text-align: left;
+}
+
+.starsCounter {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: inline-block;
+    color: rgb(254, 216, 130);
+}
+.starsCounter li {
+    display: inline-block;
+}
+
+.resetGame {
+    width: 100%;
+    margin-top: 1em;
+    padding: .5em;
+    border: none;
+    border-radius: 4px;
+    background-color: #02ccba;
+    font-size: 1.3rem;
+    color: white;
+    font-weight: 700;
+    transition: all .3s;
+}
+
+.resetGame:hover {
+    cursor: pointer;
+    background-color: rgb(151, 79, 199);
 }
