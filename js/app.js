@@ -118,7 +118,7 @@ function addCardToMatchList(list) {
 			listOfCardsMatch.push(list[0]); //add card 1 to match list
 			listOfCardsMatch.push(list[1]); //add card 2 to match list
 			checkGameOver(); //check if there are 16 cards match to popup congratulations window
-		    clearList(list); //clear showCardList
+			clearList(list); //clear showCardList
 		}
 		else {
 			let listOfClickedCards = document.querySelectorAll(".open");
@@ -126,22 +126,22 @@ function addCardToMatchList(list) {
 				listOfClickedCards[0].className += " cardBackground animated shake";
 				listOfClickedCards[1].className += " cardBackground animated shake";
 			}, 500);
-	    	clearList(list); //clear showCardList
-	    };
+			clearList(list); //clear showCardList
+		};
 	};
 }
 
 // Function that shows only match cards
 function checkCardMatch(listOfCardsShow, listOfCardsMatch) {
 	if (listOfCardsShow.length === 0) {
-	    setTimeout(function() { //add delay to close card
-	    	for (let card of cards) {
-	    		if (!card.classList.contains("match")) {
-			    	card.className = "card"; //close cards that don't match
-			    	if (card.className === "card") {
-			    		card.addEventListener("click", handlerEventClickOnCard); //add event listeners to cards that don't match
-			    	};
-			    };
+		setTimeout(function() { //add delay to close card
+			for (let card of cards) {
+				if (!card.classList.contains("match")) {
+					card.className = "card"; //close cards that don't match
+					if (card.className === "card") {
+						card.addEventListener("click", handlerEventClickOnCard); //add event listeners to cards that don't match
+					};
+				};
 			};
 		}, 1000);
 	};
@@ -161,7 +161,7 @@ function checkMovesNumber() {
 function startTimer() {
 	var sec = 0;
 	function pad ( val ) { return val > 9 ? val : "0" + val; }
-	intervalID = setInterval( function(){
+	intervalID = setInterval( function() {
 		document.getElementById("seconds").innerHTML = pad(++sec%60);
 		document.getElementById("minutes").innerHTML = pad(parseInt(sec/60,10));
 	}, 1000);
@@ -207,32 +207,21 @@ function handlerEventClickOnReset() {
 // Get the modal
 var modal = document.getElementById('myModal');
 
-/*// Get the button that opens the modal
-document.querySelector('.restart').setAttribute("id", "myBtn"); //adaugat de proba, afisare congrat window
-var btn = document.getElementById("myBtn");
-*/
-
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
-
-/*// When the user clicks the button, open the modal
-btn.onclick = function() {
-    modal.style.display = "block";
-}
-*/
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
 	modal.style.display = "none";
-    showLeaderboard(); //show leaderBoard when you exit Congratulations Window
+	showLeaderboard(); //show leaderBoard when you exit Congratulations Window
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
 	if (event.target == modal) {
 		modal.style.display = "none";
-        showLeaderboard(); //show leaderBoard when you exit Congratulations Window
-    }
+		showLeaderboard(); //show leaderBoard when you exit Congratulations Window
+	}
 }
 
 document.querySelector(".resetGame").addEventListener("click", handlerEventClickOnResetGame);
@@ -259,16 +248,16 @@ function clearAllList(list) {
 		condition = (list.length > 0) ? true : false;
 	}
 }
+
 //Function check if game is over and show scores
 function checkGameOver() {
 	if (listOfCardsMatch.length == 16) {
-	    showPopupWindow(); //show popup window
-	    writeTimeCounter();
-	    writeMovesCounter();
-	    writeStarsCounter();
-	    stopTimer();
-	    //Clear listOfCardsMatch
-	    clearAllList(listOfCardsMatch);
+		showPopupWindow(); //show popup window
+		writeTimeCounter();
+		writeMovesCounter();
+		writeStarsCounter();
+		stopTimer();
+		clearAllList(listOfCardsMatch);
 	}
 }
 
@@ -324,10 +313,6 @@ function resetPopupStars() {
 var leaderBoard = document.getElementById('leaderBoard');
 // Counter user scores added
 let counterScoresAdded = 0;
-
-//localStorage.setItem('Name', 'Anonimous');
-//localStorage.setItem('Time', '00:00');
-//localStorage.setItem('Moves', '0');
 
 // When the user clicks anywhere outside of the leaderboard, close it
 window.onclick = function(event) {
