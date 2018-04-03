@@ -44,6 +44,18 @@
 		font-size: 16px;
 	}
 
+	.leaderboard-content p {
+		font-size: 22px;
+	}
+
+	#leaderboard-table th, td {
+		font-size: 16px;
+	}
+
+	.leaderboard-content {
+		width: 60%;
+	}
+
 }
 
 @media screen and (min-width: 500px) and (max-width: 700px) {
@@ -87,4 +99,17 @@
 	.congrat-time, .congrat-moves, .congrat-stars {
 		font-size: 16px;
 	}
+
+	.leaderboard-content p {
+		font-size: 22px;
+	}
+
+	#leaderboard-table th, td {
+		font-size: 16px;
+	}
+
+	.leaderboard-content {
+		width: 60%;
+	}
+
 }

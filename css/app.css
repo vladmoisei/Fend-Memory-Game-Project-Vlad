@@ -244,7 +244,7 @@ animation-name: rotateIn;
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 60%;
+    width: 50%;
     border-radius: 10px;
     background: rgba(147,206,222,1);
     background: -moz-linear-gradient(-45deg, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(189,73,189,1) 100%);
@@ -256,6 +256,11 @@ animation-name: rotateIn;
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#93cede', endColorstr='#bd49bd', GradientType=1 );
 }
 
+.leaderboard-content p {
+    font-size: 2em;
+    text-align: center;
+}
+
 #leaderboard-table {
     border-collapse: collapse;
     width: 100%;
@@ -265,4 +270,10 @@ animation-name: rotateIn;
     padding: 8px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+}
+
+#showLeaderBoardButton {
+    font-weight: 700;
+    cursor: pointer;
+    margin: 0;
 }

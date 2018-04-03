@@ -2,7 +2,7 @@
  * Create a list that holds all of your cards
  */
 
-const listOfCards = ["fa fa-diamond", "fa fa-paper-plane-o",
+ const listOfCards = ["fa fa-diamond", "fa fa-paper-plane-o",
  "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-anchor",
  "fa fa-leaf", "fa fa-bicycle", "fa fa-diamond",
  "fa fa-bomb", "fa fa-leaf", "fa fa-bomb", "fa fa-bolt",
@@ -17,51 +17,50 @@ const listOfCards = ["fa fa-diamond", "fa fa-paper-plane-o",
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+	var currentIndex = array.length, temporaryValue, randomIndex;
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
-        currentIndex -= 1;
-        temporaryValue = array[currentIndex];
-        array[currentIndex] = array[randomIndex];
-        array[randomIndex] = temporaryValue;
-    }
+	while (currentIndex !== 0) {
+		randomIndex = Math.floor(Math.random() * currentIndex);
+		currentIndex -= 1;
+		temporaryValue = array[currentIndex];
+		array[currentIndex] = array[randomIndex];
+		array[randomIndex] = temporaryValue;
+	}
 
-    return array;
+	return array;
 }
 
 //Declaring variables
 let listOfCardsShuffled = [];
 let listOfCardsShow = [];
 let listOfCardsMatch = [];
-//let listOfClickedCards = [];
 const cards = document.querySelectorAll('.deck li');
 const moves = document.querySelector('.moves');
 let counterMoves = Number(moves.innerText);
 let starsArray = document.querySelectorAll('.fa-star');
 let intervalID; //Variable used to stop the timer
 let counterClick = 0;
-//console.log(counterMoves++);
+
 /*
  * Set Grid with shuffled cards
  * - populate array of shuffled cards
  * - create a function for adding cards to grid's deck
  */
 
-function createListOfShuffledCards() {
-	listOfCardsShuffled = shuffle(listOfCards);
-	return listOfCardsShuffled;
-}
+ function createListOfShuffledCards() {
+ 	listOfCardsShuffled = shuffle(listOfCards);
+ 	return listOfCardsShuffled;
+ }
 
-function addShuffledCardsToGrid() {
-	createListOfShuffledCards();
-	let i = 0;
-	for (let card of cards) {
-		card.className = "card";
-		card.firstElementChild.className = listOfCardsShuffled[i];
-		i++;
-	}
-}
+ function addShuffledCardsToGrid() {
+ 	createListOfShuffledCards();
+ 	let i = 0;
+ 	for (let card of cards) {
+ 		card.className = "card";
+ 		card.firstElementChild.className = listOfCardsShuffled[i];
+ 		i++;
+ 	}
+ }
 
 addShuffledCardsToGrid(); //Add random cards to grid
 
@@ -73,9 +72,9 @@ addShuffledCardsToGrid(); //Add random cards to grid
  * - add counter for moves
  */
 
-cards.forEach(elem => elem.addEventListener("click", handlerEventClickOnCard));
+ cards.forEach(elem => elem.addEventListener("click", handlerEventClickOnCard));
 
-function handlerEventClickOnCard () {
+ function handlerEventClickOnCard () {
 	if (++counterClick == 1) startTimer(); //start timer at first click on card
 	addCardToShowList(this);
 };
@@ -97,9 +96,9 @@ function addCardToShowList(card) {
 // Clear showList function
 function clearList(list) {
 	for (let i = 0; i < 2; i++) {
-            list.shift();
-        }
-    return list;
+		list.shift();
+	}
+	return list;
 }
 
 // Function for adding card to Match List and clear showList
@@ -120,8 +119,8 @@ function addCardToMatchList(list) {
 			listOfCardsMatch.push(list[1]); //add card 2 to match list
 			checkGameOver(); //check if there are 16 cards match to popup congratulations window
 		    clearList(list); //clear showCardList
-	    }
-	    else {
+		}
+		else {
 			let listOfClickedCards = document.querySelectorAll(".open");
 			setTimeout(function (argument) {
 				listOfClickedCards[0].className += " cardBackground animated shake";
@@ -134,23 +133,23 @@ function addCardToMatchList(list) {
 
 // Function that shows only match cards
 function checkCardMatch(listOfCardsShow, listOfCardsMatch) {
-    if (listOfCardsShow.length === 0) {
+	if (listOfCardsShow.length === 0) {
 	    setTimeout(function() { //add delay to close card
-			for (let card of cards) {
-		    	if (!card.classList.contains("match")) {
+	    	for (let card of cards) {
+	    		if (!card.classList.contains("match")) {
 			    	card.className = "card"; //close cards that don't match
 			    	if (card.className === "card") {
 			    		card.addEventListener("click", handlerEventClickOnCard); //add event listeners to cards that don't match
 			    	};
-		    	};
-	    	};
-	    }, 1000);
-    };
+			    };
+			};
+		}, 1000);
+	};
 }
 
 // Function for removing stars after certain number of muves
 function checkMovesNumber() {
-	if (counterMoves > 12) {
+	if (counterMoves > 15) {
 		starsArray[2].className += " star-lost";
 		if (counterMoves > 20) {
 			starsArray[1].className += " star-lost";
@@ -161,11 +160,11 @@ function checkMovesNumber() {
 //Funtion for start timer
 function startTimer() {
 	var sec = 0;
-    function pad ( val ) { return val > 9 ? val : "0" + val; }
-    intervalID = setInterval( function(){
-        document.getElementById("seconds").innerHTML = pad(++sec%60);
-        document.getElementById("minutes").innerHTML = pad(parseInt(sec/60,10));
-    }, 1000);
+	function pad ( val ) { return val > 9 ? val : "0" + val; }
+	intervalID = setInterval( function(){
+		document.getElementById("seconds").innerHTML = pad(++sec%60);
+		document.getElementById("minutes").innerHTML = pad(parseInt(sec/60,10));
+	}, 1000);
 }
 
 //Function stop timer
@@ -185,7 +184,7 @@ function stopTimer() {
  * - reset star rating
  */
 
-document.querySelector(".restart").addEventListener("click", handlerEventClickOnReset);
+ document.querySelector(".restart").addEventListener("click", handlerEventClickOnReset);
 //Function for click event on Reset Button
 function handlerEventClickOnReset() {
 	addShuffledCardsToGrid(); //Add random cards to grid
@@ -224,21 +223,21 @@ btn.onclick = function() {
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-    modal.style.display = "none";
+	modal.style.display = "none";
     showLeaderboard(); //show leaderBoard when you exit Congratulations Window
 }
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
+	if (event.target == modal) {
+		modal.style.display = "none";
+        showLeaderboard(); //show leaderBoard when you exit Congratulations Window
     }
-    showLeaderboard(); //show leaderBoard when you exit Congratulations Window
 }
 
-document.querySelector(".resetGame").addEventListener("click", handlerEventClickOnReset);
+document.querySelector(".resetGame").addEventListener("click", handlerEventClickOnResetGame);
 //Function for click event on Reset Button in Modal window
-function handlerEventClickOnReset() {
+function handlerEventClickOnResetGame() {
 	addShuffledCardsToGrid(); //Add random cards to grid
 	cards.forEach(elem => elem.addEventListener("click", handlerEventClickOnCard));
 	counterMoves = 0; //reset counter moves
@@ -256,8 +255,8 @@ function handlerEventClickOnReset() {
 function clearAllList(list) {
 	let condition = true;
 	while (condition) {
-	   	list.pop();
-	   	condition = (list.length > 0) ? true : false;
+		list.pop();
+		condition = (list.length > 0) ? true : false;
 	}
 }
 //Function check if game is over and show scores
@@ -270,12 +269,12 @@ function checkGameOver() {
 	    stopTimer();
 	    //Clear listOfCardsMatch
 	    clearAllList(listOfCardsMatch);
-    }
+	}
 }
 
 //Function show Popup window
 function showPopupWindow() {
-    modal.style.display = "block";
+	modal.style.display = "block";
 }
 
 //Function write timeCounter in popup window
@@ -316,9 +315,9 @@ function resetPopupStars() {
 }
 
 /*
- * Add to LeaderBoard
- *
- *
+ * Show LeaderBoard
+ * - add name, time, moves
+ * - use localStorage
  */
 
 // Get LeaderBoard
@@ -332,9 +331,9 @@ let counterScoresAdded = 0;
 
 // When the user clicks anywhere outside of the leaderboard, close it
 window.onclick = function(event) {
-    if (event.target == leaderboard) {
-        leaderboard.style.display = "none";
-    }
+	if (event.target == leaderboard) {
+		leaderboard.style.display = "none";
+	}
 }
 
 //Function show leaderboard
@@ -345,9 +344,9 @@ function showLeaderboard() {
 
 //Function set user scores to localStorage
 function setUserScores() {
-localStorage.setItem('Name', getName());
-localStorage.setItem('Time', getTimeCounter());
-localStorage.setItem('Moves', getMovesCounter());
+	localStorage.setItem('Name', getName());
+	localStorage.setItem('Time', getTimeCounter());
+	localStorage.setItem('Moves', getMovesCounter());
 }
 
 //Initiate row element for leaderboard table
@@ -388,8 +387,10 @@ saveNameButton.addEventListener("click", handlerEventClickOnSaveName);
 
 
 function getName() {
-	if (document.getElementById('inputName').value !== "")
-		return document.getElementById('inputName').value;
+	let name = document.getElementById('inputName').value;
+	document.getElementById('inputName').value = "";
+	if (name !== "")
+		return name;
 	return "Anonimous";
 }
 function getTimeCounter() {
@@ -404,5 +405,8 @@ function handlerEventClickOnSaveName() {
 	modal.style.display = "none";
 }
 
+document.getElementById('showLeaderBoardButton').addEventListener('click', function() {
+	leaderboard.style.display = "block";
+})
 //showLeaderboard();
 //showPopupWindow();
