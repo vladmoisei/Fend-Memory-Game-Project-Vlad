@@ -286,7 +286,7 @@ function writeMovesCounter() {
 function writeStarsCounter() {
 	let star2 = document.getElementById('star2-show');
 	let star3 = document.getElementById('star3-show');
-	if (counterMoves > 12) {
+	if (counterMoves > 15) {
 		star3.className += " star-lost";
 		if (counterMoves > 20) {
 			star2.className += " star-lost";
