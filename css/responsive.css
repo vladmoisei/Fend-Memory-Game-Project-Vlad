@@ -1,0 +1,90 @@
+@media screen and (max-width: 499px) {
+	body header h1 {
+		font-size: 28px;
+		text-align: center;
+	}
+
+	body {
+		font-size: 1.2em;
+	}
+
+	.deck {
+		width: 300px;
+		min-height: 310px;
+		box-shadow: 6px 8px 11px 0 rgba(46, 61, 73, 0.5);
+		padding: 10px;
+	}
+
+	.deck .card {
+		height: 60px;
+		width: 60px;
+	}
+
+	.score-panel {
+		width: 300px;
+	}
+
+	.container {
+		width: 100%;
+	}
+
+	.modal-content {
+		width: 80%;
+	}
+
+	.congrat-title {
+		font-size: 22px;
+	}
+
+	.congrat-message {
+		font-size: 18px;
+	}
+
+	.congrat-time, .congrat-moves, .congrat-stars {
+		font-size: 16px;
+	}
+
+}
+
+@media screen and (min-width: 500px) and (max-width: 700px) {
+	body header h1 {
+		font-size: 36px;
+		text-align: center;
+	}
+
+	body {
+		font-size: 1.7em;
+	}
+
+	.deck {
+		width: 450px;
+		min-height: 470px;
+		box-shadow: 6px 8px 11px 0 rgba(46, 61, 73, 0.5);
+		padding: 20px;
+	}
+
+	.deck .card {
+		height: 90px;
+		width: 90px;
+	}
+
+	.container {
+		width: 100%;
+	}
+
+	.modal-content {
+		width: 80%;
+	}
+
+	.congrat-title {
+		font-size: 22px;
+	}
+
+	.congrat-message {
+		font-size: 18px;
+	}
+
+	.congrat-time, .congrat-moves, .congrat-stars {
+		font-size: 16px;
+	}
+}

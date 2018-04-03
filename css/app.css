@@ -18,7 +18,9 @@ body {
 
 body {
     background: #ffffff url('../img/geometry2.png'); /* Background pattern from Subtle Patterns */
-    font-family: 'Coda', cursive;
+    font-family: 'Inconsolata', 'Coda';
+    font-size: 1.4em;
+    /*font-style: cursive;*/
 }
 
 .container {
@@ -29,7 +31,7 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Monoton', 'Open Sans', sans-serif;
     font-weight: 300;
 }
 
@@ -67,7 +69,7 @@ h1 {
 
 .deck .card.open {
     transform: rotateY(180deg);
-    transition: width 2s, height 2s, transform 0.8s;
+    transition: width 2s, height 2s, transform 0.5s;
     background: #02b3e4;
     cursor: default;
 }
@@ -114,6 +116,12 @@ h1 {
     cursor: pointer;
 }
 
+.score-panel .restart:hover {
+animation-duration: 1s;
+animation-fill-mode: both;
+animation-name: rotateIn;
+}
+
 .star-lost {
     color: #cec9c6;
 }
@@ -140,7 +148,7 @@ h1 {
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 20%;
+    width: 60%;
     border-radius: 10px;
     background: rgba(147,206,222,1);
     background: -moz-linear-gradient(-45deg, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(189,73,189,1) 100%);
@@ -169,6 +177,11 @@ h1 {
 
 .congrat-title, .congrat-message {
     text-align: center;
+}
+
+.congrat-title {
+    font-family: monospace;
+    font-size: 30px;
 }
 .congrat-time, .congrat-moves, .congrat-stars {
     width: 70px;
