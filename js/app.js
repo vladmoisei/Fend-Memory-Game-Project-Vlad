@@ -310,3 +310,65 @@ function resetPopupStars() {
 	document.getElementById('star3-show').className = "";
 }
 
+/*
+ * Add to LeaderBoard
+ *
+ *
+ */
+
+// Get LeaderBoard
+var leaderBoard = document.getElementById('leaderBoard');
+// Counter user scores added
+let counterScoresAdded = 0;
+localStorage.setItem('Name', 'Nume2');
+localStorage.setItem('Time', 'Timp2');
+localStorage.setItem('Moves', 'Mutari2');
+// When the user clicks anywhere outside of the leaderboard, close it
+window.onclick = function(event) {
+    if (event.target == leaderboard) {
+        leaderboard.style.display = "none";
+    }
+}
+
+function showLeaderboard() {
+	leaderboard.style.display = "block";
+	addUserScoresToTable();
+}
+
+//Function set user scores to localStorage
+function setUserScores() {
+
+}
+
+//Initiate row element for leaderboard table
+let leaderboardTable = document.getElementById('leaderboard-table');
+
+function addValueToRowElement(nameElement, timeElement, movesElement) {
+	nameElement.innerText = localStorage.getItem("Name");
+	timeElement.innerText = localStorage.getItem("Time");
+	movesElement.innerText = localStorage.getItem("Moves");
+}
+function initiateRowElement() {
+	let rowElement = document.createElement("tr");
+	let nameElement = document.createElement("td");
+	let timeElement = document.createElement("td");
+	let movesElement = document.createElement("td");
+	addValueToRowElement(nameElement, timeElement, movesElement);
+	createRowElement(rowElement, nameElement, timeElement, movesElement);
+	// console.log(rowElement);
+	return rowElement;
+}
+function createRowElement(rowElement, nameElement, timeElement, movesElement) {
+	rowElement.appendChild(nameElement);
+	rowElement.appendChild(timeElement);
+	rowElement.appendChild(movesElement);
+}
+
+
+//Function add user scores from localStore to Leaderboard table
+function addUserScoresToTable() {
+	// console.log(leaderboardTable);
+	let rowElement = initiateRowElement();
+	leaderboardTable.appendChild(rowElement);
+}
+showLeaderboard();
