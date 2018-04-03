@@ -225,6 +225,7 @@ btn.onclick = function() {
 // When the user clicks on <span> (x), close the modal
 span.onclick = function() {
     modal.style.display = "none";
+    showLeaderboard(); //show leaderBoard when you exit Congratulations Window
 }
 
 // When the user clicks anywhere outside of the modal, close it
@@ -232,6 +233,7 @@ window.onclick = function(event) {
     if (event.target == modal) {
         modal.style.display = "none";
     }
+    showLeaderboard(); //show leaderBoard when you exit Congratulations Window
 }
 
 document.querySelector(".resetGame").addEventListener("click", handlerEventClickOnReset);
@@ -247,6 +249,7 @@ function handlerEventClickOnReset() {
 	resetPopupStars(); //reset stars
 	//Clear listOfCardsMatch
 	clearAllList(listOfCardsMatch);
+	showLeaderboard(); //show leaderBoard when you exit Congratulations Window
 }
 
 //Function ClearAllList
@@ -281,12 +284,14 @@ function writeTimeCounter() {
 	let minutesLabel = document.querySelector('#minutes');
 	let secondsLabel = document.querySelector('#seconds');
 	timeCounter.innerText = minutesLabel.innerText + " : " + secondsLabel.innerText;
+	return timeCounter.innerText;
 }
 
 //Function write movesCounter in popup window
 function writeMovesCounter() {
 	let movesCounter = document.getElementById('movesCounter');
 	movesCounter.innerText = counterMoves;
+	return movesCounter.innerText;
 }
 
 //Function write stars score in popup window
@@ -320,9 +325,11 @@ function resetPopupStars() {
 var leaderBoard = document.getElementById('leaderBoard');
 // Counter user scores added
 let counterScoresAdded = 0;
-localStorage.setItem('Name', 'Nume2');
-localStorage.setItem('Time', 'Timp2');
-localStorage.setItem('Moves', 'Mutari2');
+
+//localStorage.setItem('Name', 'Anonimous');
+//localStorage.setItem('Time', '00:00');
+//localStorage.setItem('Moves', '0');
+
 // When the user clicks anywhere outside of the leaderboard, close it
 window.onclick = function(event) {
     if (event.target == leaderboard) {
@@ -330,6 +337,7 @@ window.onclick = function(event) {
     }
 }
 
+//Function show leaderboard
 function showLeaderboard() {
 	leaderboard.style.display = "block";
 	addUserScoresToTable();
@@ -337,7 +345,9 @@ function showLeaderboard() {
 
 //Function set user scores to localStorage
 function setUserScores() {
-
+localStorage.setItem('Name', getName());
+localStorage.setItem('Time', getTimeCounter());
+localStorage.setItem('Moves', getMovesCounter());
 }
 
 //Initiate row element for leaderboard table
@@ -353,6 +363,7 @@ function initiateRowElement() {
 	let nameElement = document.createElement("td");
 	let timeElement = document.createElement("td");
 	let movesElement = document.createElement("td");
+	setUserScores();
 	addValueToRowElement(nameElement, timeElement, movesElement);
 	createRowElement(rowElement, nameElement, timeElement, movesElement);
 	// console.log(rowElement);
@@ -371,4 +382,27 @@ function addUserScoresToTable() {
 	let rowElement = initiateRowElement();
 	leaderboardTable.appendChild(rowElement);
 }
-showLeaderboard();
+
+let saveNameButton = document.getElementById('saveNameBtn');
+saveNameButton.addEventListener("click", handlerEventClickOnSaveName);
+
+
+function getName() {
+	if (document.getElementById('inputName').value !== "")
+		return document.getElementById('inputName').value;
+	return "Anonimous";
+}
+function getTimeCounter() {
+	return document.getElementById('timeCounter').innerText;
+}
+function getMovesCounter() {
+	return document.getElementById('movesCounter').innerText;
+}
+
+function handlerEventClickOnSaveName() {
+	showLeaderboard();
+	modal.style.display = "none";
+}
+
+//showLeaderboard();
+//showPopupWindow();

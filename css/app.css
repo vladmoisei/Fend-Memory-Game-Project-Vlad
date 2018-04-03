@@ -255,3 +255,14 @@ animation-name: rotateIn;
     background: linear-gradient(135deg, rgba(147,206,222,1) 0%, rgba(117,189,209,1) 41%, rgba(189,73,189,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#93cede', endColorstr='#bd49bd', GradientType=1 );
 }
+
+#leaderboard-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#leaderboard-table th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
